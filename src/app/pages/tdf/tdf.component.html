@@ -29,7 +29,7 @@
               #nome="ngModel"
               required
             />
-            <span *ngIf="isInvalidT(nome)"></span>
+            <span *ngIf="isInvalidT(nome)">Devi inserire il nome</span>
             <label for="nameInput">Nome</label>
           </div>
           <div class="form-floating mb-3">
@@ -43,7 +43,7 @@
               #cognome="ngModel"
               required
             />
-            <span *ngIf="isInvalidT(cognome)"></span>
+            <span *ngIf="isInvalidT(cognome)">Devi inserire il cognome</span>
             <label for="usernameInput">Cognome</label>
           </div>
           <div class="form-floating mb-3">
@@ -57,7 +57,7 @@
               #password="ngModel"
               required
             />
-            <span *ngIf="isInvalidT(password)"></span>
+            <span *ngIf="isInvalidT(password)">Devi inserire la password</span>
             <label for="floatingPassword">Password</label>
           </div>
           <div class="form-floating mb-3">
@@ -71,7 +71,9 @@
               #passwordConfirm="ngModel"
               required
             />
-            <span *ngIf="isInvalidT(passwordConfirm)"></span>
+            <span *ngIf="isInvalidT(passwordConfirm)"
+              >Devi inserire la password</span
+            >
             <label for="floatingPasswordConfirm">Conferma Password</label>
           </div>
           <div class="form-group">
@@ -92,9 +94,10 @@
               ngModel
               name="profileImage"
               #profileImage="ngModel"
-              required
             />
-            <span *ngIf="isInvalidT(profileImage)"></span>
+            <span *ngIf="isInvalidT(profileImage)"
+              >Devi inserire una foto profilo</span
+            >
             <label for="profileImage">la tua immagine del profilo</label>
           </div>
           <div class="form-floating mb-3">
@@ -104,9 +107,9 @@
               id="biografia"
               placeholder="la tua biografia"
               ngModel
+              required
               name="biografia"
               #biografia="ngModel"
-              required
             />
             <label for="biografia">la tua biografia</label>
           </div>

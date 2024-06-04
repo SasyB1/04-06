@@ -17,7 +17,7 @@
       </div>
       <div class="modal-body p-5 pt-0">
         <!-- Form -->
-        <form>
+        <form [formGroup]="form">
           <div class="form-floating form-group mb-3">
             <input
               type="text"
@@ -25,10 +25,9 @@
               id="nameInput"
               placeholder="Il tuo nome"
               ngModel
-              name="nome"
-              required
+              formControlName="nome"
             />
-            <span> </span>
+            <span *ngIf="isInvalid('nome')">Devi inserire il nome</span>
             <label for="nameInput">Nome</label>
           </div>
           <div class="form-floating mb-3">
@@ -38,10 +37,9 @@
               id="usernameInput"
               placeholder="Il tuo cognome"
               ngModel
-              name="cognome"
-              required
+              formControlName="cognome"
             />
-            <span></span>
+            <span *ngIf="isInvalid('cognome')">Devi inserire il cognome</span>
             <label for="usernameInput">Cognome</label>
           </div>
           <div class="form-floating mb-3">
@@ -51,10 +49,11 @@
               id="floatingPassword"
               placeholder="la tua Password"
               ngModel
-              name="password"
-              required
+              formControlName="password"
             />
-            <span> </span>
+            <span *ngIf="isInvalid('password')">
+              Devi inserire la password</span
+            >
             <label for="floatingPassword">Password</label>
           </div>
           <div class="form-floating mb-3">
@@ -64,14 +63,15 @@
               id="floatingPasswordConfirm"
               placeholder="Conferma la tua Password"
               ngModel
-              name="passwordConfirm"
-              required
+              formControlName="passwordConfirm"
             />
-            <span> </span>
+            <span *ngIf="isInvalid('passwordConfirm')"
+              >Devi inserire la password
+            </span>
             <label for="floatingPasswordConfirm">Conferma Password</label>
           </div>
           <div class="form-group">
-            <select class="form-control" name="genere" ngModel>
+            <select class="form-control" formControlName="genere" ngModel>
               <option value="" disabled selected>
                 Seleziona il tuo genere
               </option>
@@ -86,10 +86,11 @@
               class="form-control rounded-3"
               id="profileImage"
               ngModel
-              name="profileImage"
-              required
+              formControlName="profileImage"
             />
-            <span> </span>
+            <span *ngIf="isInvalid('profileImage')"
+              >Devi inserire una foto profilo
+            </span>
             <label for="profileImage">la tua immagine del profilo</label>
           </div>
           <div class="form-floating mb-3">
@@ -99,8 +100,7 @@
               id="biografia"
               placeholder="la tua biografia"
               ngModel
-              name="biografia"
-              required
+              formControlName="biografia"
             />
             <label for="biografia">la tua biografia</label>
           </div>
@@ -111,23 +111,27 @@
               id="nicknameInput"
               placeholder="Il tuo nome"
               ngModel
-              name="username"
-              required
+              formControlName="nickname"
             />
-
-            <label for="nicknameInput">username</label>
+            <span *ngIf="isInvalid('nickname')"
+              >Devi inserire un nickname
+            </span>
+            <label for="nicknameInput">nickname</label>
           </div>
           <button
+            (click)="submit()"
+            [disabled]="form.invalid"
             class="w-100 mb-2 btn btn-lg rounded-3 btn-danger"
             type="submit"
           >
-            Conferma
+            {{ form.invalid ? "Please fill out the form" : "Sign up" }}
           </button>
           <small class="text-body-secondary"
             >By clicking Sign up, you agree to the terms of use.</small
           >
           <div class="d-flex justify-content-center">
             <button
+              (click)="autoFillForm()"
               class="w-50 mb-2 btn btn-lg rounded-3 btn-danger"
               type="submit"
             >
